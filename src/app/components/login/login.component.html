@@ -1,0 +1,48 @@
+
+<div class="container">
+
+    <div class="form-box">
+        <div *ngIf = "signInStart == true">
+            <h1>Sign In</h1>
+        </div>
+        <div *ngIf = "signInStart == false">
+            <h1>Sign Up</h1>
+        </div>
+        <div *ngIf = "throwError" style="color: red;">
+            {{errorMsg}}
+        </div>
+        <form #template = "ngForm" [formGroup]="userForm">
+            <div class="input-field" *ngIf = "signInStart == false">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" class="form-control" formControlName = "name" id = "name"
+                 placeholder="Name">
+            </div>
+            <div class="input-field">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" class="form-control" formControlName = "userName" id = "userName"
+                 placeholder="Username">
+            </div>
+            <div class="input-field">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" class="form-control" formControlName = "password" id="Password"
+                 placeholder="Password">
+            </div>
+            <div class="btn-field">
+                <div *ngIf = "signInStart === true">
+                    <button type="submit" (click)="signIn(template.value)">Sign In</button>
+                    <b class="clickBtn">Click here for </b><u class="clickHighlight" (click) = 'toggle()'>SignUp</u>
+                </div>
+                <div *ngIf = "signInStart === false">
+                    <button type="submit" (click)="signUp(template.value)">Sign Up</button>
+                    <b class="clickBtn">Click here for </b><u class="clickHighlight" (click) = 'toggle()'>SignIn</u>
+
+                </div>
+
+                </div>
+        </form>
+    </div>
+</div>
+
+<!--[ngClass]="{'myCSSclass' : !signInStart}   -->
+
+<!--[ngClass]="{'myCSSclass' : signInStart}"  -->
